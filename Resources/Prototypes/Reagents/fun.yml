@@ -348,3 +348,31 @@
         conditions:
         - !type:ReagentThreshold
           min: 50
+
+- type: reagent
+  id: FlooralCleaner
+  name: reagent-name-flooral
+  desc: reagent-desc-flooral
+  physicalDesc: reagent-physical-desc-floral
+  flavor: floral
+  color: "#0a6b0b"
+  tileReactions: # TODO: add CleanTileReaction
+  - !type:CreateEntityTileReaction
+    entity: Carpet
+    maxOnTileWhitelist:
+      tags: [ Carpet ]
+  metabolisms:
+    Poison:
+      effects:
+      - !type:PopupMessage
+        type: Local
+        messages: [ "carpetium-effect-blood-fibrous", "carpetium-effect-jumpsuit-insides" ]
+        probability: 0.1
+      # Hail the madman logic, if it has CARP, means it helps against CARPs
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: CarpoToxin
+          min: 1
+        reagent: CarpoToxin
+        amount: -3

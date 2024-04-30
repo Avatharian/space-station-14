@@ -27,3 +27,6 @@ reagent-desc-laughter = Some say that this is the best medicine, but recent stud
 
 reagent-name-weh = juice that makes you Weh
 reagent-desc-weh = Pure essence of lizard plush. Makes you Weh!
+
+reagent-name-flooral = flooral cleaner
+reagent-desc-flooral = Cleaning solution mixed with a patented Nanotrasen fertilizer, bringing the fresh sent of the great outdoors to a station near you! Apply to the floor to touch grass.
