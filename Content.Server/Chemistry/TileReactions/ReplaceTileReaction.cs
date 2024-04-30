@@ -12,20 +12,18 @@ namespace Content.Server.Chemistry.TileReactions;
 
 [UsedImplicitly]
 [DataDefinition]
-public sealed partial class ReplaceTileReaction : ITileReaction
+public sealed partial class ReplaceTileReaction
 {
-
-
-    [Dependency] private readonly ITileDefinitionManager _tiledef = default!;
-    [Dependency] private readonly TileSystem _tilesys = default!;
 
     [DataField(required: true)]
     public ProtoId<ContentTileDefinition> Floor { get; set; } = default!;
 
     public FixedPoint2 TileReact(TileRef tile, ReagentPrototype reagent, FixedPoint2 reactVolume)
     {
-        var replacementTile = (ContentTileDefinition) _tiledef[Floor];
-        _tilesys.ReplaceTile(tile, replacementTile);
+        TileSystem tilesys = IoCManager.Resolve<IEntityManager>().System<TileSystem>();
+        ITileDefinitionManager tiledef = IoCManager.Resolve<ITileDefinitionManager>();
+        var replacementTile = (ContentTileDefinition) tiledef[Floor];
+        tilesys.ReplaceTile(tile, replacementTile);
         return reactVolume;
     }
 }
